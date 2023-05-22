@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">My Story</string>
+    <string name="buat_ceritamu">Buat ceritamu</string>
+    <string name="detail_story">Detail Story</string>
+    <string name="username">Username</string>
+    <string name="datepost">Datepost</string>
+    <string name="desc_home1">Mulai Ceritamu disini....</string>
+    <string name="desc_home2">Ceritakan perjalananmu untuk menjadi Developer handal bersama Dicoding.</string>
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="desc_login">Tidak mempunyai akun ?</string>
+    <string name="desc_regis1">Mulai dari sini....</string>
+    <string name="desc_regis2">Sudah memiliki akun ?</string>
+    <string name="logout">LOGOUT</string>
+</resources>
