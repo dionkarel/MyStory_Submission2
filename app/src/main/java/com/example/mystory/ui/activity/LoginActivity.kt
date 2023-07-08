@@ -65,7 +65,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun actionLogin() {
-        binding.btLogin.setOnClickListener {
             val email = binding.edtLogEmail.editText?.text.toString()
             val password = binding.edtLogPswd.editText?.text.toString()
             when {
@@ -84,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
                     postLogin(email, password)
                 }
             }
-        }
     }
 
     private fun postLogin(email: String, password: String) {
