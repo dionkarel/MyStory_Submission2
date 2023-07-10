@@ -6,13 +6,13 @@
         android:id="@+id/action_maps"
         android:title="@string/maps"
         android:icon="@drawable/baseline_map_24"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:enabled="true"/>
 
     <item
         android:id="@+id/action_logout"
         android:title="@string/logout"
         android:icon="@drawable/baseline_exit_to_app_24"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:enabled="true"/>
 </menu>

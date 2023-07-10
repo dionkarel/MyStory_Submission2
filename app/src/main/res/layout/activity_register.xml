@@ -85,7 +85,6 @@
         app:startIconDrawable="@drawable/ic_baseline_account_box_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/reg_username_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -123,7 +122,6 @@
         app:startIconDrawable="@drawable/ic_baseline_email_24">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/reg_email_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -160,7 +158,6 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <com.example.mystory.util.EdtPassword
-            android:id="@+id/reg_pswd_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

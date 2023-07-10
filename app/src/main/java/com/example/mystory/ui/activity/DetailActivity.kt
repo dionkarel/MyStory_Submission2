@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
-import com.example.mystory.R
 import com.example.mystory.databinding.ActivityDetailBinding
 import com.example.mystory.ui.viewmodel.DetailViewModel
 import com.example.mystory.util.Result
