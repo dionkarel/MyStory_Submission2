@@ -100,6 +100,14 @@ class AddStoryActivity : AppCompatActivity() {
         binding.btUpload.setOnClickListener {
             uploadImage()
         }
+
+        binding.switchLocation.setOnCheckedChangeListener { _, isCheked ->
+            if (isCheked) {
+                getLocation()
+            } else {
+                userLocation = null
+            }
+        }
     }
 
     private fun uploadImage() {
@@ -210,6 +218,32 @@ class AddStoryActivity : AppCompatActivity() {
         }
     }
 
+    private fun getLocation() {
+        if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) && checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+                if (it != null) {
+                    userLocation = it
+                } else {
+                    binding.switchLocation.isChecked = false
+                }
+            }
+        } else {
+            requestPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
+        }
+    }
+
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this@AddStoryActivity,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
     private val launcherIntentFile = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
@@ -237,6 +271,24 @@ class AddStoryActivity : AppCompatActivity() {
                 )
             )
             binding.img.setImageBitmap(result)
+        }
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        when {
+            permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
+                getLocation()
+            }
+
+            permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
+                getLocation()
+            }
+
+            else -> {
+                binding.switchLocation.isChecked = false
+            }
         }
     }
 

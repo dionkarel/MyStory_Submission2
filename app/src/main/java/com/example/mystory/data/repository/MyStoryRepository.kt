@@ -32,34 +32,10 @@ class MyStoryRepository private constructor(
     private val userPreference: UserPreference
 ) {
 
-    companion object {
-
-        @Volatile
-        private var INSTANCE: MyStoryRepository? = null
-
-        fun getInstance(
-            apiService: ApiService,
-            myStoryDao: MyStoryDao,
-            myStoryDb: MyStoryDb,
-            userPreference: UserPreference
-        ): MyStoryRepository =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: MyStoryRepository(
-                    apiService,
-                    myStoryDao,
-                    myStoryDb,
-                    userPreference
-                )
-            }.also {
-                INSTANCE = it
-            }
-
-    }
-
     private val loginResult = MediatorLiveData<Result<LoginResult>>()
     private val registerResult = MediatorLiveData<Result<RegisterResponse>>()
     private val uploadResult = MediatorLiveData<Result<AddStoryResponse>>()
-
+    private val storyLocation = MediatorLiveData<Result<List<MyStoryModel>>>()
 
     fun getStories(token: String): LiveData<PagingData<MyStoryModel>> {
         @OptIn(ExperimentalPagingApi::class)
@@ -185,6 +161,38 @@ class MyStoryRepository private constructor(
         return uploadResult
     }
 
+    fun getStoryLocation(token: String): LiveData<Result<List<MyStoryModel>>> {
+        storyLocation.value = Result.Loading
+        val client =  apiService.getStoryLocation(
+            "Bearer $token",
+            100,
+            true
+        )
+        client.enqueue(object :  Callback<GetAllStoryResponse> {
+
+            override fun onResponse(
+                call: Call<GetAllStoryResponse>,
+                response: Response<GetAllStoryResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()!!
+                    if (!responseBody.error) {
+                        storyLocation.value = Result.Success(responseBody.listStory!!)
+                    } else {
+                        storyLocation.value = Result.Error(responseBody.message)
+                    }
+                } else {
+                    storyLocation.value = Result.Error(response.message())
+                }
+            }
+            override fun onFailure(call: Call<GetAllStoryResponse>, t: Throwable) {
+                storyLocation.value = Result.Error(t.message.toString())
+            }
+        })
+
+        return storyLocation
+    }
+
     fun getUserToken() = userPreference.getUserToken()
 
     suspend fun userSave(user: LoginResult) {
@@ -193,5 +201,28 @@ class MyStoryRepository private constructor(
 
     suspend fun userLogout() {
         userPreference.userLogout()
+    }
+
+    companion object {
+
+        @Volatile
+        private var INSTANCE: MyStoryRepository? = null
+
+        fun getInstance(
+            apiService: ApiService,
+            myStoryDao: MyStoryDao,
+            myStoryDb: MyStoryDb,
+            userPreference: UserPreference
+        ): MyStoryRepository =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: MyStoryRepository(
+                    apiService,
+                    myStoryDao,
+                    myStoryDb,
+                    userPreference
+                )
+            }.also {
+                INSTANCE = it
+            }
     }
 }

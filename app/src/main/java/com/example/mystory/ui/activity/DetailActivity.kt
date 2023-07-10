@@ -3,9 +3,11 @@ package com.example.mystory.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
+import com.example.mystory.R
 import com.example.mystory.databinding.ActivityDetailBinding
 import com.example.mystory.ui.viewmodel.DetailViewModel
 import com.example.mystory.util.Result
@@ -20,7 +22,6 @@ class DetailActivity : AppCompatActivity() {
     private val viewModel: DetailViewModel by viewModels {
         ViewModelFactory.getInstance(this)
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +51,11 @@ class DetailActivity : AppCompatActivity() {
                 when (it) {
 
                     is Result.Loading -> {
+                        showLoading(true)
                     }
 
                     is Result.Success -> {
+                        showLoading(false)
                         Glide.with(applicationContext)
                             .load(it.data.photoUrl)
                             .into(binding.ivDetail)
@@ -64,6 +67,7 @@ class DetailActivity : AppCompatActivity() {
                     }
 
                     is Result.Error -> {
+                        showLoading(false)
                         Toast.makeText(
                             this@DetailActivity,
                             it.error,
@@ -73,6 +77,10 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     companion object {

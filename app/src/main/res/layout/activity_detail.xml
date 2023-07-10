@@ -6,48 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.DetailActivity">
 
-    <ImageView
-        android:id="@+id/iv_detail"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_margin="28dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"
-        tools:src="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="16dp"
         android:text="@string/username"
         android:textSize="16sp"
-        android:layout_marginTop="24dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/iv_detail"
-        app:layout_constraintTop_toBottomOf="@+id/iv_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/tv_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        android:text="@string/detail_story"
-        app:layout_constraintStart_toStartOf="@+id/tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
 
     <TextView
         android:id="@+id/tv_datepost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/datepost"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_username"
-        app:layout_constraintEnd_toEndOf="@+id/iv_detail"
-        app:layout_constraintTop_toTopOf="@+id/tv_username"
-        tools:text="@tools:sample/date/ddmmyy"/>
+        app:layout_constraintStart_toStartOf="@+id/tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username"
+        tools:text="@tools:sample/date/ddmmyy" />
+
+
+    <ImageView
+        android:id="@+id/iv_detail"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="22dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_datepost"
+        tools:ignore="ContentDescription"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/detail_story"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/iv_detail"
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail" />
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

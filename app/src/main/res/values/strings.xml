@@ -16,4 +16,5 @@
     <string name="logout">LOGOUT</string>
     <string name="maps">MAPS</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="tampilkan_lokasi">Tampilkan Lokasi</string>
 </resources>

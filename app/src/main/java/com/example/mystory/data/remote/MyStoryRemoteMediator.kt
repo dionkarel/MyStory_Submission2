@@ -17,10 +17,6 @@ class MyStoryRemoteMediator (
     private val token: String
 ): RemoteMediator<Int, MyStoryModel>() {
 
-    companion object {
-        const val INITIAL_PAGE_INDEX = 1
-    }
-
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, MyStoryModel>
@@ -98,5 +94,9 @@ class MyStoryRemoteMediator (
                 myStoryDb.remoteKeysDao().getRemoteKeysId(id)
             }
         }
+    }
+
+    companion object {
+        const val INITIAL_PAGE_INDEX = 1
     }
 }
