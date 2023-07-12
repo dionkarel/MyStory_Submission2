@@ -1,4 +1,4 @@
-package com.example.mystory
+package com.example.mystory.util
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

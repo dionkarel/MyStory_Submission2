@@ -2,11 +2,11 @@ package com.example.mystory.ui.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
-import com.example.mystory.DataDummy
-import com.example.mystory.MainDispatcherRule
+import com.example.mystory.util.DataDummy
+import com.example.mystory.util.MainDispatcherRule
 import com.example.mystory.data.repository.MyStoryRepository
 import com.example.mystory.data.response.LoginResult
-import com.example.mystory.getOrAwaitValue
+import com.example.mystory.util.getOrAwaitValue
 import com.example.mystory.util.Result
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.*
@@ -22,10 +22,6 @@ import org.mockito.junit.MockitoJUnitRunner
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
 class LoginViewModelTest{
-    companion object {
-        private const val EMAIL = "email"
-        private const val PASSWORD = "password"
-    }
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
@@ -53,5 +49,10 @@ class LoginViewModelTest{
         Mockito.verify(repository).postLogin(EMAIL, PASSWORD)
         assertNotNull(actualUser)
         assertTrue(actualUser is Result.Success)
+    }
+
+    companion object {
+        private const val EMAIL = "email"
+        private const val PASSWORD = "password"
     }
 }

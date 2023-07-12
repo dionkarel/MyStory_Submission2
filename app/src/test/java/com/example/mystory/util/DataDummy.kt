@@ -1,10 +1,5 @@
-package com.example.mystory
+package com.example.mystory.util
 
-import com.dicoding.intermediete.submissionstoryapps.data.local.StoryModel
-import com.dicoding.intermediete.submissionstoryapps.data.remote.response.AddNewStoryResponse
-import com.dicoding.intermediete.submissionstoryapps.data.remote.response.GetAllStoryResponse
-import com.dicoding.intermediete.submissionstoryapps.data.remote.response.LoginResult
-import com.dicoding.intermediete.submissionstoryapps.data.remote.response.RegisterResponse
 import com.example.mystory.data.local.MyStoryModel
 import com.example.mystory.data.response.AddStoryResponse
 import com.example.mystory.data.response.GetAllStoryResponse

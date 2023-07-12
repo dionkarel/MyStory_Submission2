@@ -1,4 +1,4 @@
-package com.example.mystory
+package com.example.mystory.util
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
